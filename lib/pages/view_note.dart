@@ -29,7 +29,9 @@ class _ViewNoteState extends State<ViewNote> {
     description = widget.data['description'];
     return Scaffold(
       appBar: AppBar(
-        actions: [
+        actions: [ElevatedButton(onPressed: () {
+          save();
+        }, child: Icon(Icons.save_alt_outlined)),
           ElevatedButton(
               onPressed: () {
                 isEdit = !isEdit;
@@ -45,14 +47,25 @@ class _ViewNoteState extends State<ViewNote> {
             TextFormField(
               initialValue: title,
               enabled: isEdit,
+              onChanged: (value) {
+                title = value;
+              },
             ),
             TextFormField(
               initialValue: description,
               enabled: isEdit,
+              onChanged: (value) {
+                description = value;
+              },
             ),
           ],
         ),
       ),
     );
+  }
+
+  save() async {
+    await widget.ref.update({'title': title, 'description': description});
+    Navigator.pop(context);
   }
 }
