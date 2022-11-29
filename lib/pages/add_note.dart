@@ -16,6 +16,9 @@ class _AddNoteState extends State<AddNote> {
 
   void add() {
     FirebaseNoteService.addNote(title!, description!);
+    setState(() {
+    });
+    Navigator.of(context).pop();
   }
 
   @override

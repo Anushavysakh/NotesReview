@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'model/note.dart';
 
 class FirebaseNoteService {
-  Note? note;
 
   FirebaseNoteService.privateCon();
 
@@ -17,5 +16,7 @@ class FirebaseNoteService {
         FirebaseFirestore.instance.collection('notes');
     var data = {'title' : title, 'description' : description};
     reference.add(data);
+
+    print(data);
   }
 }
