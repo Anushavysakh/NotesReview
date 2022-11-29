@@ -42,7 +42,8 @@ class _HomePageState extends State<HomePage> {
         },
         child: Icon(Icons.add),
       ),
-      body: Column(children: [
+      body: Column(mainAxisAlignment: MainAxisAlignment.center,
+          children: [
         FutureBuilder<QuerySnapshot>(
           future: ref.get(),
           builder: (context, snapshot) {
@@ -55,13 +56,13 @@ class _HomePageState extends State<HomePage> {
                 child: ListView.builder(
                   itemCount: snapshot.data?.docs.length,
                   itemBuilder: (context, index) {
-                    Map? data = snapshot.data!.docs[index].data() as Map?;
+                    Map data = snapshot.data!.docs[index].data() as Map;
                     return InkWell(
                         onTap: () {
                           Navigator.of(context)
                               .push(MaterialPageRoute(
                                   builder: (context) => ViewNote(
-                                      data: data![index],
+                                      data: data,
                                       ref: snapshot
                                           .data!.docs[index].reference)))
                               .then((value) {
